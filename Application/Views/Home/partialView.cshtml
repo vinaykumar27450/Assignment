@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "partialView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    AjaxOptions opt = new AjaxOptions()
+    {
+        UpdateTargetId = "list",
+    };
+}
+
+<h2>Partial View Implementation</h2>
+@Ajax.ActionLink("Click to Show List of Users", "PartialViewList",null, opt,new { @class = "btn btn-primary" })
+
+
+<button class="btn btn-danger" id="hide">Click to Hide List of Users</button>
+<br />
+<br />
+<div class="container">
+    <div id="list"></div>
+</div>
+
+
+@section MyAjax
+{
+
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script>
+        $('#hide').click(function () {
+            $("#list").hide();
+        });
+        $(".btn-primary").click(function () {
+            $('#list').show();
+        })
+    </script>
+}

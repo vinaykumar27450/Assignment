@@ -1,0 +1,45 @@
+﻿
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <td>User Id</td>
+        <td>UserName</td>
+        <td>Email</td>
+        <td>Gender</td>
+        <td>CityName</td>
+        <td>DOB</td>
+        <td>Interest</td>
+    </tr>
+    @foreach (var x in ViewBag.users)
+    {
+        <tr>
+            <td>@x.UserId</td>
+            <td>@x.UserName</td>
+            <td>@x.Email</td>
+            <td>@x.Gender</td>
+            @foreach (var y in ViewBag.cities)
+            {
+                if (x.CityId == y.CityId)
+                {
+                    <td>@y.CityName</td>
+                }
+
+            }
+            <td>@x.DOB.Day-@x.DOB.Month-@x.DOB.Year</td>
+            <td>
+                @if (x.IsInterestedInCSharp)
+                {
+                    <p>CSharp</p>
+                }
+                @if (x.IsInterestedInJava)
+                {
+                    <p>Java</p>
+                }
+                @if (x.IsInterestedInPython)
+                {
+                    <p>Python</p>
+                }
+            </td>
+        </tr>
+    }
+</table>

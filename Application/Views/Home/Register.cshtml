@@ -97,7 +97,7 @@
                 @Html.LabelFor(m => m.CityId, new { @class = "control-label" })
             </div>
             <div class="col-md-10 input-group">
-                @Html.DropDownListFor(m => m.CityId, new SelectList(ViewBag.cities, "CityId", "CityName"), "Select City", new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.CityId, new SelectList(Model.CityList, "CityId", "CityName"), "Select City", new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.CityId, "", new { @class = "alert" })
 
             </div>
@@ -108,9 +108,9 @@
                 <label class="control-label">DOB</label>
             </div>
             <div class="col-md-10 input-group">
-                @Html.TextBoxFor(m => m.DOB, new {  @class = "form-control",placeholder= "(mm/dd/yyyy)" })
+                @Html.TextBoxFor(m => m.DOB, new {  @class = "form-control",id="datePicker", placeholder= "(mm/dd/yyyy)"})
                 @Html.ValidationMessageFor(m => m.DOB, "", new { @class = "alert" })
-
+               
             </div>
         </div>
 
@@ -124,17 +124,10 @@
     }
 </div>
 
-@section MyAjax
+@*@section MyAjax
 {
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-    <script>
-        function success() {
-            $('#error').text = "success";
-        }
-        function failure() {
-            $('#error').text = "failure";
-        }
-    </script>
-}
+}*@
+

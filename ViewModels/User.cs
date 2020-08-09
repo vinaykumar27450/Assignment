@@ -22,7 +22,7 @@ namespace ViewModels
         public string Password { get; set; }
 
         [Required]
-        [Remote("ChkMale","Home",ErrorMessage ="Gender must be Male")]
+        [Remote("ChkMale", "Home", ErrorMessage = "Gender must be Male")]
         public string Gender { get; set; }
         public bool IsInterestedInCSharp { get; set; }
         public bool IsInterestedInJava { get; set; }
@@ -32,9 +32,12 @@ namespace ViewModels
 
 
 
-        //[DataType(DataType.Date)]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         //public DateTime YourDate { get; set; }
         [Required]
         public DateTime DOB { get; set; }
+
+        public IEnumerable<City> CityList { get; set; }
     }
 }

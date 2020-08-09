@@ -1,11 +1,14 @@
-﻿<!DOCTYPE html>
+﻿@using System.Web.Optimization;
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    @*<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />*@
+    @Styles.Render("~/Content/MyCss");
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
 </head>
 <body>
@@ -38,8 +41,19 @@
         </footer>
     </div>
 
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    @RenderSection("MyAjax",false)
+    @*<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>*@
+    @Scripts.Render("~/Scripts/MyJS")
+    @*@RenderSection("MyAjax", false)*@
+    <script>
+        $(function () {
+            $('.datetimepicker1').datetimepicker({
+                
+                });
+        });
+
+        $('#datePicker').val = 2;
+        
+    </script>
 </body>
 </html>

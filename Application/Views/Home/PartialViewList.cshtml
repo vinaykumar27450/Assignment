@@ -9,6 +9,7 @@
         <td>CityName</td>
         <td>DOB</td>
         <td>Interest</td>
+        <td></td>
     </tr>
     @foreach (var x in ViewBag.users)
     {
@@ -40,6 +41,11 @@
                     <p>Python</p>
                 }
             </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = x.UserId }, new { @class = "btn btn-info" })
+            @Html.ActionLink("Delete", "Delete", new { id = x.UserId }, new { @class = "btn btn-danger" })
+        </td>
         </tr>
+
     }
 </table>

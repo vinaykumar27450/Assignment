@@ -7,6 +7,8 @@ using ViewModels;
 using DAL;
 using DataModels;
 using System.Drawing;
+using System.Net.Mail;
+using System.Net;
 namespace Application.Controllers
 {
     public class HomeController : Controller
@@ -20,9 +22,10 @@ namespace Application.Controllers
         }
         public ActionResult Register()
         {
-            
-            ViewBag.cities = city.getAllCity();
-            return View();
+            var userViewModel = new User();
+            userViewModel.CityList = city.getAllCity();
+            //ViewBag.cities = city.getAllCity();
+            return View(userViewModel);
         }
         [HttpPost]
         public ActionResult Register(User us)
@@ -44,7 +47,7 @@ namespace Application.Controllers
             else
             {
                  user.Add(us);
-                    return RedirectToAction("Users");
+                return RedirectToAction("Users");
             }
             
             //ViewBag.cities = city.getAllCity();
@@ -69,6 +72,7 @@ namespace Application.Controllers
         {
             ViewBag.cities = city.getAllCity();
             User user1 = user.GetById(id);
+            ViewBag.users = user.GetAll();
             return View(user1);
         }
         [HttpPost]
@@ -82,13 +86,16 @@ namespace Application.Controllers
             {
                     ModelState.AddModelError("UserName", "Username already Exist");
                     ViewBag.cities = city.getAllCity();
-                    return View(user1);
+                return View(user1);
+                //return Json(false, JsonRequestBehavior.AllowGet);
             }
             else if (chkEmail.Count != 0  && chkEmail[0].UserId != us.UserId)
             {
                     ModelState.AddModelError("Email", "Email already Exist");
                     ViewBag.cities = city.getAllCity();
-                    return View(user1);
+                return View(user1);
+                //return Json(false, JsonRequestBehavior.AllowGet);
+
             }
             else
             {                
@@ -109,7 +116,7 @@ namespace Application.Controllers
                 return Json(true, JsonRequestBehavior.AllowGet);
             }
                 return Json(false, JsonRequestBehavior.AllowGet);
-
+            
         }
     }
 }
